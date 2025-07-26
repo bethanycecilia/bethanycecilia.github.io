@@ -7,10 +7,10 @@ firebase_admin.initialize_app(cred, {
     "databaseURL": "https://bookshelf-a9a41-default-rtdb.firebaseio.com/"
 })
 
-def add_book(title, author):
+def add_book(title, author, bought="not bought"):
     ref = db.reference("books")
-    ref.push({"title": title, "author": author})
-    print(f"Added: {title} by {author}")
+    ref.push({"title": title, "author": author, "bought": bought})
+    print(f"Added: {title} by {author} ({bought})")
 
 def list_books():
     ref = db.reference("books")

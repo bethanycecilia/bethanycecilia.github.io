@@ -1,4 +1,4 @@
-// Firebase config for Joe's Bookshelf
+// Firebase config for The Bookshelf
 const firebaseConfig = {
   apiKey: "AIzaSyAQ7tu132gIIlMNHjd3vQVD-M_3Ln7R2JM",
   authDomain: "bookshelf-a9a41.firebaseapp.com",

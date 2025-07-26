@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Joe's Bookshelf</title>
+  <title>The Bookshelf</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>📚 Joe's Bookshelf</h1>
+    <h1>📚 The Bookshelf</h1>
 
     <div class="controls">
       <input type="text" id="searchInput" placeholder="Search by title or author" />
@@ -18,10 +18,26 @@
     <form id="addBookForm">
       <input type="text" id="titleInput" placeholder="Book Title" required />
       <input type="text" id="authorInput" placeholder="Author" required />
+      <select id="boughtInput" required>
+          <option value="">Bought?</option>
+          <option value="bought">Bought</option>
+          <option value="not bought">Not Bought</option>
+      </select>
       <button type="submit">Add Book</button>
     </form>
 
-    <ul id="bookList"></ul>
+    <table id="bookTable">
+    <thead>
+        <tr>
+        <th data-column="title">Title ⬍</th>
+        <th data-column="author">Author ⬍</th>
+        <th data-column="bought">Status ⬍</th>
+        <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+    </table>
+
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
