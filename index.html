@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joe's Bookshelf</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📚 Joe's Bookshelf</h1>
+
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="Search by title or author" />
+      <button onclick="resetSearch()">Reset</button>
+    </div>
+
+    <form id="addBookForm">
+      <input type="text" id="titleInput" placeholder="Book Title" required />
+      <input type="text" id="authorInput" placeholder="Author" required />
+      <button type="submit">Add Book</button>
+    </form>
+
+    <ul id="bookList"></ul>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-database-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
