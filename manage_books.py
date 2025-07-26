@@ -21,8 +21,3 @@ def list_books():
 def delete_book(book_id):
     db.reference(f"books/{book_id}").delete()
     print(f"Deleted book {book_id}")
-
-# Example usage:
-# add_book("1984", "George Orwell")
-# list_books()
-# delete_book("<BOOK_ID>")
