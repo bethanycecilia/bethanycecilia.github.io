@@ -14,7 +14,9 @@ function renderRow(id, data) {
   tr.innerHTML = `
     <td>${data.title}</td>
     <td>${data.author}</td>
-    <td class="${data.bought === 'bought' ? 'bought' : 'not-bought'}">${data.bought}</td>
+    <td class="${data.bought === 'bought' ? 'bought' : 'not-bought'}">
+        ${data.bought.charAt(0).toUpperCase() + data.bought.slice(1)}
+    </td>
     <td><button class="delete-btn" onclick="deleteBook('${id}')">Delete</button></td>
   `;
   return tr;
