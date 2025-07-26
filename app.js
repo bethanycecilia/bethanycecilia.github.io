@@ -5,10 +5,10 @@ const boughtInput = document.getElementById("boughtInput");
 const searchInput = document.getElementById("searchInput");
 const tableBody = document.querySelector("#bookTable tbody");
 
-let booksData = {}; // Will store the fetched data
+let booksData = {};
 let currentSort = { column: null, direction: 1 };
 
-// Render a row
+// Render one row
 function renderRow(id, data) {
   const tr = document.createElement("tr");
   tr.innerHTML = `
@@ -20,13 +20,14 @@ function renderRow(id, data) {
   return tr;
 }
 
-// Filter and sort
+// Update display from booksData
 function updateDisplay() {
   const filter = searchInput.value.toLowerCase();
   let rows = [];
 
   for (let id in booksData) {
     const book = booksData[id];
+
     if (
       book.title.toLowerCase().includes(filter) ||
       book.author.toLowerCase().includes(filter) ||
@@ -36,21 +37,23 @@ function updateDisplay() {
     }
   }
 
+  // Apply sorting
   if (currentSort.column) {
     rows.sort((a, b) => {
-      const valA = a[currentSort.column].toLowerCase();
-      const valB = b[currentSort.column].toLowerCase();
+      const valA = a[currentSort.column]?.toLowerCase() || '';
+      const valB = b[currentSort.column]?.toLowerCase() || '';
       return valA.localeCompare(valB) * currentSort.direction;
     });
   }
 
+  // Clear and re-render
   tableBody.innerHTML = "";
-  rows.forEach(({ id, title, author, bought }) => {
-    tableBody.appendChild(renderRow(id, { title, author, bought }));
+  rows.forEach(row => {
+    tableBody.appendChild(renderRow(row.id, row));
   });
 }
 
-// Fetch and listen
+// Listen for DB changes
 db.ref("books").on("value", (snapshot) => {
   booksData = snapshot.val() || {};
   updateDisplay();
@@ -72,12 +75,12 @@ addBookForm.onsubmit = (e) => {
   boughtInput.value = "";
 };
 
-// Delete function
+// Delete book
 function deleteBook(id) {
   db.ref("books/" + id).remove();
 }
 
-// Sorting
+// Handle sorting
 document.querySelectorAll("#bookTable th[data-column]").forEach(th => {
   th.addEventListener("click", () => {
     const column = th.dataset.column;
@@ -91,5 +94,5 @@ document.querySelectorAll("#bookTable th[data-column]").forEach(th => {
   });
 });
 
-// Filter on input
+// Handle filter input
 searchInput.oninput = () => updateDisplay();
